@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>{% block title %} Vegetable delivery {% endblock %}</title>
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+
+</head>
+<body>
+    <header>
+        {% if user.is_authenticated %}
+    <form action="{% url 'logout' %}" method="post" class="formLogout">
+        <a href="{% url 'main_page' %}" class="submitButton logoutButton">Main</a>
+        <a href="{% url 'profile' %}" class="submitButton logoutButton">Profile</a>
+        {% csrf_token %}
+        <button class="submitButton logoutButton" type="submit">Logout</button>
+
+    </form>
+
+        {% endif %}
+    </header>
+    <div>
+        <img class="logo_img" src="{% static 'images/logo.jpeg' %}" alt="Logo">
+    </div>
+    <main>
+        {% block main_content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <p>Wonderland: Cucumber str. 5</p>
+        <p>+3 (123) 456-78-90</p>
+    </footer>
+
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+{% extends "main_page/base.html" %}
+{% load static %}
+{% block main_content %}
+<div class="container">
+<div class="user-profile">
+    <table id="userProfile">
+        <thead>
+            <tr class="table_head">
+                <th colspan="2">User Info</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>User Name</td>
+                <td>
+                    <input  class="profile-input" id="customerProfileUserName" type="text" value="{{ customer_info.user_name }}">
+                </td>
+            </tr>
+            <tr>
+                <td>First Name</td>
+                <td>
+                    <input  class="profile-input" id="customerProfileFirstName" type="text" value="{{ customer_info.first_name }}">
+                </td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td>
+                    <input  class="profile-input" id="customerProfileLastName" type="text" value="{{ customer_info.last_name }}">
+                </td>
+            </tr>
+            <tr>
+                <td>E-mail</td>
+                <td>
+                    <input  class="profile-input" id="customerProfileEmail" type="email" value="{{ customer_info.email }}">
+                </td>
+            </tr>
+            <tr>
+                <td>Phone</td>
+                <td>
+                    <input  class="profile-input" id="customerProfilePhone" type="text" value="{{ customer_info.phone }}">
+                </td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>
+                    <input  class="profile-input" id="customerProfileAddress" type="text" value="{{ customer_info.address }}">
+                </td>
+            </tr>
+            <tr>
+                <td class="submit-container" colspan="2" >
+                    <button id="openProfileModal" class="submitButton" type="button">Update data</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="submit-container" colspan="2" >
+                    <a href="{% url 'change_password' %}" class="submitButton">Change Password</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="confirmationModal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Are you sure you want to update the user data?</p>
+            <div class="modal-buttons">
+                <button id="confirmProfileSubmit" class="submitButton">Yes, Update</button>
+                <button id="cancelSubmit" class="submitButton">Cancel</button>
+            </div>
+          </div>
+    </div>
+</div>
+<div class="orders-info">
+    <div class="orders-list">
+    <table class="orders-table" id="ordersTable">
+        <thead>
+            <tr class="table_head">
+                <th colspan="5">User orders</th>
+            </tr>
+            <tr class="table_head">
+                <th>Date</th>
+                <th>Status</th>
+                <th>Total Price</th>
+                <th>Delivery address</th>
+                <th>Comments</th>
+                <th class="hidden">Id</th>
+            </tr>
+        </thead>
+        <tbody>
+                {% for order in orders_info %}
+                <tr title="Click to see order details">
+                    <td>{{order.date|date:"Y.m.d" }}</td>
+                    <td>{{order.status}}</td>
+                    <td>{{order.total_price}}</td>
+                    <td>{{order.delivery_address}}</td>
+                    <td>{{order.comments}}</td>
+                    <td class="hidden">{{ order.id }}</td>
+                </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    <div class="orders-details-list">
+        <table class="orders-table" id="orderDetailsTable" >
+        <thead>
+            <tr class="table_head">
+                <th colspan="4">Order details</th>
+            </tr>
+            <tr class="table_head">
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price per kg</th>
+                <th>Total Price</th>
+                </tr>
+        </thead>
+            <tbody id="orderDetailsTableBody">
+
+            </tbody>
+    </div>
+    </div>
+<script src="{% static 'js/scripts_profile.js' %}"></script>
+ {% endblock %}

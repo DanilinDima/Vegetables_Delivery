@@ -1,0 +1,143 @@
+{% extends "main_page/base.html" %}
+{% load static %}
+{% block main_content %}
+    <div class="container">
+        <div class="table-container">
+            <table id="productTable">
+                <thead>
+                    <tr class="table_head">
+                        <th>Product name</th>
+                        <th>Price (kg)</th>
+                        <th>Available qty. (kg)</th>
+                        <th>Order qty. (kg)</th>
+                        <th>Total price</th>
+                        <th class="hidden">Product ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in my_products %}
+                    <tr>
+                        <td title="{{ product.description }}">{{product.name}}</td>
+                        <td class="price">{{product.price}}</td>
+                        <td>{{product.qty}}</td>
+                        <td>
+                            <input class="input_qty" type="number" name="order_qty" min="0" max="{{ product.qty }}" value="0" step="0.1" onblur="roundAndCheck(this, {{ product.qty }})" onchange="updateRowTotal(this)">
+                        </td>
+                        <td id="row_total">0</td>
+                        <td class="hidden">{{ product.id }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4" style="text-align: right;">Total Price:</td>
+                        <td><span id="totalPrice">0</span></td>
+                    </tr>
+                    <tr>
+                        <td class="submit-container" colspan="5" >
+                            <button id="openModal" class="submitButton" type="button">Submit Order</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="orderAlertMessage" colspan="5" style="text-align: right;">Please select products before submitting the order.</td>
+
+                    </tr>
+                    <tr>
+
+                        <td class="orderStockAlertMessage" colspan="5" style="text-align: right;">Order quantity is more than in stock.</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="customer-info">
+            <table id="customerInfo">
+                <thead>
+                    <tr class="table_head">
+                        <th>Customer/Delivery Info</th>
+                        <th></th>
+                        <th class="hidden">Product ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>First Name</td>
+                        <td id="customerInfoFirstName">{{ customer_info.first_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Last Name</td>
+                        <td id="customerInfoLastName">{{ customer_info.last_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>E-mail</td>
+                        <td id="customerInfoEmail">{{ customer_info.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td id="customerInfoPhone">{{ customer_info.phone }}</td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>{{ customer_info.address }}</td>
+                    </tr>
+                    <tr>
+                        <td>Delivery Address</td>
+                        <td>
+                            <input title="Enter new address if it different from your address" class="input_delivery_addr" id="customerInfoDeliveryAddress" type="text" name="input_delivery_addr" value="{{ customer_info.address }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Comments</td>
+                        <td>
+                            <textarea title="Leave additional comments for your order" class="input_order_comments" name="input_order_comments" rows="3"></textarea>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="confirmationModal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>ORDER SUMMARY</h2>
+            <table>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price (KG)</th>
+                    <th>Order Qty. (KG)</th>
+                    <th>Total Price</th>
+                </tr>
+            </thead>
+            <tbody id="orderSummaryTableBody">
+
+            </tbody>
+            <tfoot>
+                <tr class="modalTotalPriceRow">
+                    <td colspan="3" >Total Price:</td>
+                    <td><span id="modalTotalPrice">0</span></td>
+                </tr>
+                <tr>
+                    <td colspan="4">Customer Name: <span id="modalCustomerName"></span></td>
+                </tr>
+                <tr>
+                    <td colspan="4">Phone: <span id="modalPhone"></span></td>
+                </tr>
+                <tr>
+                    <td colspan="4">Delivery Address: <span id="modalDeliveryAddress"></span></td>
+                </tr>
+                <tr>
+                    <td colspan="4">Comments: <span id="modalComments"></span></td>
+                </tr>
+            </tfoot>
+        </table>
+            <p>Are you sure you want to submit the order?</p>
+            <div class="modal-buttons">
+                <button id="confirmSubmit" class="submitButton">Yes, Submit</button>
+                <button id="cancelSubmit" class="submitButton">Cancel</button>
+            </div>
+          </div>
+    </div>
+<script src="{% static 'js/scripts_main.js' %}"></script>
+ {% endblock %}
+
+{% block title %} Vegetable delivery {% endblock %}

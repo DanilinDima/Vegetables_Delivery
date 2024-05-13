@@ -1,0 +1,341 @@
+@charset "UTF-8";
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+header {
+    width: 100%;
+    height: 60px;
+    background-color: #9DA397;
+
+
+    position: fixed;
+    top: 0;
+}
+
+.logo_img {
+    display: block;
+    margin: 100px auto 0;
+    height: 200px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-color: #43483e;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+h2, h1{
+color: #43483f;
+}
+
+.container {
+    display: flex;
+    margin-top: 80px;
+    margin-bottom: 150px;
+    margin-left: 50px;
+    margin-right: 50px;
+    justify-content: center;
+    flex-direction: row;
+    gap: 40px;
+}
+
+.table-container,
+.customer-info {
+    border-radius: 20px;
+}
+
+table {
+    font-family: 'Arial';
+    border-collapse: collapse;
+    border: 1px solid #eee;
+    border-bottom: 2px solid #43483e;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1),
+                0 10px 20px rgba(0, 0, 0, 0.05),
+                0 20px 20px rgba(0, 0, 0, 0.05),
+                0 30px 20px rgba(0, 0, 0, 0.05);
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+tr:hover {
+    background: #f4f4f4;
+}
+
+tr:hover td {
+    color: #555;
+}
+
+th, td {
+    color: #43483f;
+    border: collapse solid #eee;
+    padding: 12px 35px;
+    border-collapse: collapse;
+}
+
+th {
+    background: #9DA397;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+th.last {
+    border-right: none;
+}
+
+table input {
+color: #43483f
+}
+
+.input_qty {
+    width: 60px;
+}
+
+.submitButton {
+    align-items: center;
+    appearance: none;
+    background-color: #9DA397;
+    border-radius: 10px;
+    border-width: 0;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#43483e 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #FFF;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "Arial",monospace;
+    height: 48px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s,transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow,transform;
+    font-size: 18px;
+}
+
+.submitButton:focus {
+    box-shadow: #43483e 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #43483e 0 -3px 0 inset;
+}
+
+.submitButton:hover {
+    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #43483e 0 -3px 0 inset;
+    transform: translateY(-2px);
+    }
+
+.submitButton:active {
+    box-shadow: #43483e 0 3px 7px inset;
+    transform: translateY(2px);
+    }
+
+.submit-container {
+    padding: 10px;
+    text-align: right;
+    }
+
+.hidden {
+    display: none;
+}
+
+.form-container {
+  font-family: 'Arial';
+    margin-top: 25px;
+    margin-right: auto;
+    margin-bottom: 150px;
+    margin-left: auto;
+    border-collapse: collapse;
+    border: 1px solid #eee;
+    border-bottom: 2px solid #43483e;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1),
+                0 10px 20px rgba(0, 0, 0, 0.05),
+                0 20px 20px rgba(0, 0, 0, 0.05),
+                0 30px 20px rgba(0, 0, 0, 0.05);
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    width: fit-content;
+    padding: 10px 30px 30px 30px;
+}
+
+.form-container form input{
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-container form label{
+    color: #43483f;
+}
+
+.form-container form input::placeholder {
+    opacity: 0.5;
+}
+
+.form-header {
+    background: #9DA397;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin: -30px -30px 0px -30px;
+    padding:30px 30px 5px 30px;
+}
+
+.input_delivery_addr, .input_order_comments {
+width: 100%;
+}
+
+.form-group {
+margin: 20px;
+}
+
+.form-group li{
+color: red;
+    font-size: 12px;
+    list-style: none;
+}
+
+
+.modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    max-width: 80%;
+    max-height: 80%;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1),
+                0 10px 20px rgba(0, 0, 0, 0.05),
+                0 20px 20px rgba(0, 0, 0, 0.05),
+                0 30px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.close {
+      color: #aaa;
+      font-size: 28px;
+      font-weight: bold;
+      margin-left: auto;
+      cursor: pointer;
+}
+
+.close:hover, .close:focus {
+      color: black;
+      text-decoration: none;
+
+}
+
+.modal .modal-buttons {
+      display: flex;
+      gap: 20px;
+}
+
+.modalTotalPriceRow {
+border-top: 1px solid #ccc;
+border-bottom: 1px solid #ccc;
+}
+
+.orderAlertMessage, .orderStockAlertMessage {
+    font-size: 12px;
+    color: red;
+    display: none;
+}
+
+.logoutButton {
+    background-color: #43483e;
+    color: #FFF;
+    height: 40px;
+    padding: 20px;
+    margin: 10px;
+    font-size: 16px;
+}
+
+.formLogout {
+display: flex;
+justify-content: flex-end;
+}
+
+.singupButton {
+width: 100%;
+}
+
+.profile-input {
+    width: 250px;
+}
+
+.orders-table td{
+    font-size: 12px;
+
+}
+
+.orders-table tbody {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.orders-table thead, .orders-table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    }
+
+.orders-table tbody {
+    display: block;
+}
+
+.orders-details-list {
+    margin-top: 40px;
+}
+
+.selected {
+    background: #f4f4f4;
+    }
+
+.passwordBackToProfileButton {
+    margin-top: 20px;
+}
+
